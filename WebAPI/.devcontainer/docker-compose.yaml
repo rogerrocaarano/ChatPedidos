@@ -1,0 +1,7 @@
+services:
+  devcontainer:
+    image: mcr.microsoft.com/vscode/devcontainers/base:ubuntu
+    volumes:
+      - ../../.:/workspace:cached
+      - ~/.ssh:/home/vscode/.ssh:ro
+    command: sleep infinity

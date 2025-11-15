@@ -1,0 +1,33 @@
+{
+  "dockerComposeFile": ["docker-compose.yaml"],
+  "name": "dotNET",
+  "service": "devcontainer",
+  "workspaceFolder": "/workspace/WebAPI",
+  "features": {
+    "ghcr.io/devcontainers/features/dotnet": {
+      "version": "10.0.100"
+    }
+  },
+  "postCreateCommand": "dotnet tool restore",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-dotnettools.csdevkit",
+        "MermaidChart.vscode-mermaid-chart",
+        "esbenp.prettier-vscode",
+        "csharpier.csharpier-vscode"
+      ],
+      "settings": {
+        "csharp.preview.improvedLaunchExperience": false,
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.formatOnSave": true,
+        "[csharp]": {
+          "editor.defaultFormatter": "csharpier.csharpier-vscode"
+        },
+        "[xml]": {
+          "editor.defaultFormatter": "csharpier.csharpier-vscode"
+        }
+      }
+    }
+  }
+}
