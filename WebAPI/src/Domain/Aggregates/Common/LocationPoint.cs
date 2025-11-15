@@ -1,5 +1,5 @@
 using Domain.Abstractions;
 
-namespace Domain.Aggregates.Order;
+namespace Domain.Aggregates.Common;
 
 public record LocationPoint(float Latitude, float Longitude) : IValueObject;

@@ -5,7 +5,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
   <ItemGroup>
-    <Folder Include="Aggregates/" />
+    <Folder Include="Aggregates/Common/" />
+    <Folder Include="Aggregates/Customer/" />
     <Folder Include="Aggregates/Order/" />
     <Folder Include="Abstractions/" />
   </ItemGroup>
