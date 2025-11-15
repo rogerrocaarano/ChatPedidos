@@ -1,13 +1,6 @@
 classDiagram
-    class BaseEntity {
-        -Id: Guid
-        -CreatedAt: DateTime
-        -UpdatedAt: DateTime
-    }
-
-    BaseEntity <|-- Order
     class Order {
-        <<AggregateRoot>>
+        <<Entity, AggregateRoot>>
         -CustomerId: Guid
         -Items: OrderItem[]
         -ClientLocation: LocationPoint[0..1]
@@ -47,8 +40,8 @@ classDiagram
         +Cancelled
     }
 
-    BaseEntity <|-- OrderItem
     class OrderItem {
+        <<Entity>>
         -ProductId: Guid
         -Quantity: int
         -UnitPrice: float
@@ -58,6 +51,7 @@ classDiagram
     }
 
     class LocationPoint {
+        <<ValueObject>>
         -Latitude: float
         -Longitude: float
         +LocationPoint(lat: float, long: float): void
