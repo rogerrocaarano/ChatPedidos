@@ -2,29 +2,25 @@ using Domain.Abstractions;
 
 namespace Domain.Aggregates.ProductAggregate;
 
-public class ImageProduct : BaseEntity<Guid>
+public class ProductImage : BaseEntity<Guid>
 {
+    public Guid ProductId { get; private set; }
     public string ImageUrl { get; private set; }
-    public bool IsMain { get; private set; }
 
-    private ImageProduct(Guid id, string imageUrl, bool isMain)
+    private ProductImage(Guid id, Guid productId, string imageUrl)
         : base(id)
     {
+        ProductId = productId;
         ImageUrl = imageUrl;
-        IsMain = isMain;
     }
 
-    public static ImageProduct Create(string imageUrl, bool isMain = false)
+    public static ProductImage Create(Guid productId, string imageUrl)
     {
-        return new ImageProduct(
-            id: Guid.NewGuid(),
-            imageUrl: imageUrl,
-            isMain: isMain
-        );
+        return new ProductImage(id: Guid.NewGuid(), productId: productId, imageUrl: imageUrl);
     }
 
-    public void SetAsMain(bool isMain)
+    public void UpdateUrl(string imageUrl)
     {
-        IsMain = isMain;
+        ImageUrl = imageUrl;
     }
 }
