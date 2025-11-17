@@ -1,3 +1,10 @@
 <Solution>
+  <Folder Name="/Apps/">
+    <Project Path="Apps/Api/Api.csproj" />
+  </Folder>
+  <Folder Name="/Infrastructure/">
+    <Project Path="Infrastructure/Persistence/Persistence.csproj" />
+  </Folder>
+  <Project Path="Application/Application.csproj" />
   <Project Path="Domain/Domain.csproj" />
 </Solution>

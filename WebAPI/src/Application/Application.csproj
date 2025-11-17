@@ -5,8 +5,12 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
   <ItemGroup>
-    <Folder Include="Aggregates/Common/" />
-    <Folder Include="Aggregates/Customer/" />
-    <Folder Include="Aggregates/Order/" />
+    <PackageReference
+      Include="LiteBus.Commands.Extensions.Microsoft.DependencyInjection"
+      Version="4.2.0"
+    />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="../Domain/Domain.csproj" />
   </ItemGroup>
 </Project>
