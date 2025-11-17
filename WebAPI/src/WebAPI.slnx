@@ -3,6 +3,7 @@
     <Project Path="Apps/Api/Api.csproj" />
   </Folder>
   <Folder Name="/Infrastructure/">
+    <Project Path="Infrastructure/Migrator/Migrator.csproj" />
     <Project Path="Infrastructure/Persistence/Persistence.csproj" />
   </Folder>
   <Project Path="Application/Application.csproj" />

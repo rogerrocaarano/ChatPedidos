@@ -12,6 +12,8 @@ public class Customer : BaseEntity<Guid>, IAggregateRoot
 
     private readonly List<Address> _addresses = new();
 
+    private Customer() { } // For ORMs
+
     private Customer(
         Guid id,
         string? name,

@@ -5,3 +5,19 @@ services:
       - ../../.:/workspace:cached
       - ~/.ssh:/home/vscode/.ssh:ro
     command: sleep infinity
+    environment:
+      - ConnectionStrings__DefaultConnection=Host=db;Port=5432;Database=db;Username=dev;Password=dev
+
+  db:
+    image: postgres:18
+    environment:
+      POSTGRES_USER: dev
+      POSTGRES_PASSWORD: dev
+      POSTGRES_DB: db
+    volumes:
+      - db-data:/var/lib/postgresql
+    ports:
+      - "5432:5432"
+
+volumes:
+  db-data:

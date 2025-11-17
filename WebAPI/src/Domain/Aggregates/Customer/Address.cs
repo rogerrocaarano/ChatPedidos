@@ -8,6 +8,8 @@ public class Address : BaseEntity<Guid>
     public LocationPoint Location { get; private set; }
     public string Name { get; private set; }
 
+    private Address() { } // For ORMs
+
     private Address(Guid id, LocationPoint location, string name)
         : base(id)
     {
