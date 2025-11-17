@@ -7,6 +7,8 @@ public class ProductImage : BaseEntity<Guid>
     public Guid ProductId { get; private set; }
     public string ImageUrl { get; private set; }
 
+    private ProductImage() { } // For ORMs
+
     private ProductImage(Guid id, Guid productId, string imageUrl)
         : base(id)
     {

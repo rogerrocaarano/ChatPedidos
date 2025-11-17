@@ -12,6 +12,8 @@ public class Product : BaseEntity<Guid>, IAggregateRoot
 
     public List<ProductImage> Images { get; private set; }
 
+    private Product() { } // For ORMs
+
     private Product(
         Guid id,
         string name,

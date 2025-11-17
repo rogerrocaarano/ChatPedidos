@@ -1,5 +1,6 @@
 using Domain.Aggregates.Customer;
 using Domain.Aggregates.Order;
+using Domain.Aggregates.Product;
 
 namespace Persistence;
 
@@ -7,6 +8,7 @@ public class AppDbContext : DbContext, IUnitOfWork
 {
     public DbSet<Customer> Customers { get; set; }
     public DbSet<Order> Orders { get; set; }
+    public DbSet<Product> Products { get; set; }
 
     public AppDbContext(DbContextOptions<AppDbContext> options)
         : base(options) { }
