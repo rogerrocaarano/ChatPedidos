@@ -60,6 +60,24 @@ delivery/order system integrated with Telegram.
 - Debug: Use VS Code .NET debugger on `src/Apps/Api/Api.csproj` (launch profiles
   in `Properties/launchSettings.json`)
 
+### Adding a New Aggregate
+
+To add a new aggregate (e.g., `Order`):
+
+1. **Add to AppDbContext**: In `src/Infrastructure/Persistence/AppDbContext.cs`,
+   add `public DbSet<Order> Orders { get; set; }` and import the namespace.
+2. **Add Parameterless Constructor**: In the aggregate root (e.g.,
+   `src/Domain/Aggregates/Order/Order.cs`), add
+   `private Order() { } // For ORMs` if not present (required for EF Core).
+3. **Create Configuration**: Add
+   `src/Infrastructure/Persistence/Configurations/OrderConfiguration.cs`
+   implementing `IEntityTypeConfiguration<Order>`, configure keys, properties,
+   and owned entities (see `CustomerConfiguration.cs` for examples).
+4. **Generate Migration**: From `src/`, run
+   `dotnet dotnet-ef migrations add AddOrderAggregate --project Infrastructure/Persistence --startup-project Infrastructure/Migrator --output-dir Migrations`.
+5. **Update Database**: Run
+   `dotnet dotnet-ef database update --project Infrastructure/Persistence --startup-project Infrastructure/Migrator`.
+
 ## Integration Points
 
 - Telegram integration via `TelegramId` value object in `Customer`.
