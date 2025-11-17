@@ -8,8 +8,9 @@ public class Product : BaseEntity<Guid>, IAggregateRoot
     public string Description { get; private set; }
     public decimal Price { get; private set; }
     public bool IsAvailable { get; private set; }
+    public Guid? MainImageId { get; private set; }
 
-    public List<ImageProduct> Images { get; private set; }
+    public List<ProductImage> Images { get; private set; }
 
     private Product(
         Guid id,
@@ -17,14 +18,17 @@ public class Product : BaseEntity<Guid>, IAggregateRoot
         string description,
         decimal price,
         bool isAvailable,
-        List<ImageProduct> images
-    ) : base(id)
+        List<ProductImage> images,
+        Guid? mainImageId
+    )
+        : base(id)
     {
         Name = name;
         Description = description;
         Price = price;
         IsAvailable = isAvailable;
         Images = images;
+        MainImageId = mainImageId;
     }
 
     public static Product Create(string name, string description, decimal price)
@@ -35,7 +39,8 @@ public class Product : BaseEntity<Guid>, IAggregateRoot
             description: description,
             price: price,
             isAvailable: true,
-            images: new List<ImageProduct>()
+            images: new List<ProductImage>(),
+            mainImageId: null
         );
     }
 
@@ -49,39 +54,47 @@ public class Product : BaseEntity<Guid>, IAggregateRoot
     public void UpdateName(string name) => Name = name;
 
     public void UpdateDescription(string description) => Description = description;
-    
+
     public void UpdatePrice(decimal price) => Price = price;
 
-    public void UpdateAvailability(bool isAvailable) => IsAvailable = isAvailable;
+    public void SetProductAsAvailable() => IsAvailable = true;
 
-    public void UpdateAvailability(bool isAvailable)
+    public void SetProductAsUnavailable() => IsAvailable = false;
+
+    public void AddImage(string imageUrl, bool setAsMain = false)
     {
-        IsAvailable = isAvailable;
-    }
+        var newImage = ProductImage.Create(Id, imageUrl);
+        Images.Add(newImage);
 
-    public void AddImage(string imageUrl, bool isMain = false)
-    {
-        if (isMain)
-        {
-            foreach (var img in Images)
-                img.SetAsMain(false);
-        }
-
-        Images.Add(ImageProduct.Create(imageUrl, isMain));
+        if (setAsMain)
+            MainImageId = newImage.Id;
     }
 
     public void RemoveImage(Guid imageId)
     {
-        Images.RemoveAll(i => i.Id == imageId);
+        var img = Images.FirstOrDefault(i => i.Id == imageId);
+        if (img == null)
+            return;
+
+        Images.Remove(img);
+
+        if (MainImageId == imageId)
+            MainImageId = null; // si era la principal, desmarcar
     }
 
     public void MarkImageAsMain(Guid imageId)
     {
-        foreach (var img in Images)
-            img.SetAsMain(img.Id == imageId);
+        if (!Images.Any(i => i.Id == imageId))
+            throw new InvalidOperationException("Image does not belong to this product");
+
+        MainImageId = imageId;
     }
 
+    public ProductImage? GetMainImage()
+    {
+        if (MainImageId == null)
+            return null;
 
-
-
+        return Images.FirstOrDefault(i => i.Id == MainImageId);
+    }
 }
