@@ -9,13 +9,44 @@ public class CustomerConfiguration : IEntityTypeConfiguration<Customer>
     {
         builder.HasKey(c => c.Id);
 
-        builder.OwnsMany(
-            c => c.Addresses,
-            a =>
+        builder.OwnsOne(
+            customer => customer.PhoneNumber,
+            phoneNumber =>
             {
-                a.ToTable("Addresses");
-                a.WithOwner().HasForeignKey("CustomerId");
-                a.HasKey("Id");
+                phoneNumber.Property(prop => prop.CountryCode).HasColumnName("PhoneCountryCode");
+                phoneNumber.Property(prop => prop.Number).HasColumnName("PhoneNumber");
+            }
+        );
+
+        builder.OwnsOne(
+            customer => customer.TelegramId,
+            telegramId =>
+            {
+                telegramId.Property(prop => prop.Id).HasColumnName("TelegramId");
+            }
+        );
+
+        builder.OwnsMany(
+            customer => customer.Addresses,
+            address =>
+            {
+                address.ToTable("Addresses");
+                address.WithOwner().HasForeignKey("CustomerId");
+                address.HasKey("Id");
+                address.OwnsOne(
+                    address => address.Location,
+                    location =>
+                    {
+                        location
+                            .Property(prop => prop.Latitude)
+                            .HasColumnName("Latitude")
+                            .IsRequired();
+                        location
+                            .Property(prop => prop.Longitude)
+                            .HasColumnName("Longitude")
+                            .IsRequired();
+                    }
+                );
             }
         );
     }
