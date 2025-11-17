@@ -3,4 +3,4 @@ using LiteBus.Commands.Abstractions;
 
 namespace Application.Features.CreateCustomerFromTelegram;
 
-public sealed record CreateCustomerFromTelegramCommand(long TelegramId) : ICommand<Customer> { }
+public sealed record CreateCustomerFromTelegramCommand(long TelegramId) : ICommand<Guid> { }
