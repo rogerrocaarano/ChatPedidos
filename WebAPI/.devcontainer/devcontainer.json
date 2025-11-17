@@ -15,7 +15,8 @@
         "ms-dotnettools.csdevkit",
         "MermaidChart.vscode-mermaid-chart",
         "esbenp.prettier-vscode",
-        "csharpier.csharpier-vscode"
+        "csharpier.csharpier-vscode",
+        "mhutchie.git-graph"
       ],
       "settings": {
         "csharp.preview.improvedLaunchExperience": false,
