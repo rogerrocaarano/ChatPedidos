@@ -1,0 +1,47 @@
+classDiagram
+    class Customer {
+        <<Entity, AggregateRoot>>
+        -Name: string[0..1]
+        -PhoneNumber: PhoneNumber[0..1]
+        -TelegramId: TelegramId[0..1]
+        -Addresses: Address[]
+        +CreateFromTelegram(telegramId: TelegramId): Customer
+        +UpdateName(name: string): void
+        +UpdatePhoneNumber(phoneNumber: PhoneNumber): void
+        +UpdateTelegramId(telegramId: TelegramId): void
+        +AddAddress(location: LocationPoint, name: string): void
+        +UpdateAddress(address: Address): void
+        +RemoveAddress(addressId: Guid): void
+
+    }
+    Customer o-- PhoneNumber
+    Customer o-- TelegramId
+    Customer o-- Address
+
+    class PhoneNumber {
+        <<ValueObject>>
+        -CountryCode: string
+        -Number: string
+    }
+
+    class TelegramId {
+        <<ValueObject>>
+        -Id: long
+    }
+
+    class Address {
+        <<Entity>>
+        -Location: LocationPoint
+        -Name: string
+        +Create(location: LocationPoint, name: string): Address
+        +UpdateName(name: string): void
+        +UpdateLocation(location: LocationPoint): void 
+    }
+    Address o-- LocationPoint
+
+    class LocationPoint {
+        <<ValueObject>>
+        -Latitude: float
+        -Longitude: float
+        +LocationPoint(lat: float, long: float): void
+    }

@@ -1,0 +1,58 @@
+classDiagram
+    class Order {
+        <<Entity, AggregateRoot>>
+        -CustomerId: Guid
+        -Items: OrderItem[]
+        -ClientLocation: LocationPoint[0..1]
+        -Status: OrderStatus
+        -PaymentId: Guid[0..1]
+        -RiderId: Guid[0..1]
+        +Create(customerId: Guid): Order
+        +AddItem(product: Guid, quantity: int, unitPrice: float): void
+        +RemoveItem(itemId: Guid): void
+        +UpdateItemQuantity(itemId: Guid, quantity: int): void
+        +SetClientLocation(location: LocationPoint): void
+        +CustomerConfirm(): void
+        +MarkAsPaid(paymentId: Guid): void
+        +TotalAmount(): float
+        +MarkAsReadyForPickup(): void
+        +AssignRider(riderId: Guid): void
+        +MarkOnTheWay(): void
+        +MarkAtCustomerLocation(): void
+        +CompleteOrder(): void
+        +CancelOrder(): void
+    }
+    Order o-- OrderItem
+    Order o-- LocationPoint
+    Order ..> OrderStatus
+
+    class OrderStatus {
+        <<Enum>>
+        +CustomerPending
+        +CustomerConfirmed
+        +CustomerPaid
+        +InPreparation
+        +ReadyForPickup
+        +WaitingForRider
+        +OnTheWay
+        +AtCustomerLocation
+        +Completed
+        +Cancelled
+    }
+
+    class OrderItem {
+        <<Entity>>
+        -ProductId: Guid
+        -Quantity: int
+        -UnitPrice: float
+        +Create(productId: Guid, quantity: int, unitPrice: float): OrderItem
+        +UpdateQuantity(quantity: int): void
+        +TotalAmount(): float
+    }
+
+    class LocationPoint {
+        <<ValueObject>>
+        -Latitude: float
+        -Longitude: float
+        +LocationPoint(lat: float, long: float): void
+    }
