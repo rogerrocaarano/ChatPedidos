@@ -2,11 +2,11 @@ using Domain.Aggregates.Customer;
 
 namespace Persistence.Repositories;
 
-public class CustomerRepository : IRepository<Customer>
+public class CustomersRepository : IRepository<Customer>
 {
     private readonly AppDbContext _context;
 
-    public CustomerRepository(AppDbContext context)
+    public CustomersRepository(AppDbContext context)
     {
         _context = context;
     }
