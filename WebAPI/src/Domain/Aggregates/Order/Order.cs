@@ -12,6 +12,8 @@ public class Order : BaseEntity<Guid>, IAggregateRoot
     public Guid? PaymentId { get; private set; }
     public Guid? RiderId { get; private set; }
 
+    private Order() { } // For ORMs
+
     private Order(
         Guid id,
         Guid customerId,

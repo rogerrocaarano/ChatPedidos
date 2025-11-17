@@ -8,6 +8,8 @@ public class OrderItem : BaseEntity<Guid>
     public int Quantity { get; private set; }
     public float UnitPrice { get; private set; }
 
+    private OrderItem() { } // For ORMs
+
     private OrderItem(Guid id, Guid productId, int quantity, float unitPrice)
         : base(id)
     {
