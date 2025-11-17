@@ -1,6 +1,6 @@
 using Domain.Abstractions;
 
-namespace Domain.Aggregates.ProductAggregate;
+namespace Domain.Aggregates.Product;
 
 public class ProductImage : BaseEntity<Guid>
 {
