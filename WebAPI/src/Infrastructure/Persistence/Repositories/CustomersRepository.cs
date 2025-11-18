@@ -30,4 +30,13 @@ public class CustomersRepository : ICustomersRepository
             .Customers.Include(c => c.Addresses)
             .FirstOrDefaultAsync(c => c.Id == id, ct);
     }
+
+    public async Task<ICollection<Customer>> GetCollectionAsync(
+        CancellationToken cancellationToken = default
+    )
+    {
+        return await _context
+            .Customers.Include(customer => customer.Addresses)
+            .ToListAsync(cancellationToken);
+    }
 }

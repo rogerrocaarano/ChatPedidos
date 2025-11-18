@@ -30,4 +30,13 @@ public class ProductsRepository : IProductsRepository
             .Products.Include(p => p.Images)
             .FirstOrDefaultAsync(p => p.Id == id, ct);
     }
+
+    public async Task<ICollection<Product>> GetCollectionAsync(
+        CancellationToken cancellationToken = default
+    )
+    {
+        return await _context
+            .Products.Include(product => product.Images)
+            .ToListAsync(cancellationToken);
+    }
 }

@@ -7,6 +7,7 @@ public interface IRepository<T>
 {
     IUnitOfWork UnitOfWork { get; }
     Task<T?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default);
+    Task<ICollection<T>> GetCollectionAsync(CancellationToken cancellationToken = default);
     void Add(T aggregate);
     void Remove(T aggregate);
 }
