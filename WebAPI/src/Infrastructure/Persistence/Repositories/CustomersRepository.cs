@@ -1,8 +1,9 @@
 using Domain.Aggregates.Customer;
+using Domain.Repositories;
 
 namespace Persistence.Repositories;
 
-public class CustomersRepository : IRepository<Customer>
+public class CustomersRepository : ICustomersRepository
 {
     private readonly AppDbContext _context;
 
