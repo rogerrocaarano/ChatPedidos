@@ -1,13 +1,14 @@
 using Domain.Abstractions;
 using Domain.Aggregates.Customer;
+using Domain.Repositories;
 using LiteBus.Commands.Abstractions;
 
 namespace Application.Features.CreateCustomerFromTelegram;
 
-public sealed class CreateCustomerFromTelegramHandler(IRepository<Customer> customerRepository)
+public sealed class CreateCustomerFromTelegramHandler(ICustomersRepository customerRepository)
     : ICommandHandler<CreateCustomerFromTelegramCommand, Guid>
 {
-    private readonly IRepository<Customer> _customerRepository = customerRepository;
+    private readonly ICustomersRepository _customerRepository = customerRepository;
 
     public async Task<Guid> HandleAsync(
         CreateCustomerFromTelegramCommand message,
