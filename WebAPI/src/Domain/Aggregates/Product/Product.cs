@@ -10,7 +10,9 @@ public class Product : BaseEntity<Guid>, IAggregateRoot
 
     public List<ProductImage> Images { get; private set; }
 
+#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring as nullable.
     private Product() { } // For ORMs
+#pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring as nullable.
 
     private Product(
         Guid id,
