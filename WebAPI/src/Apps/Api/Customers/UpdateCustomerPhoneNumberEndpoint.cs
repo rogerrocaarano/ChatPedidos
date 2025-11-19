@@ -15,7 +15,10 @@ public class UpdateCustomerPhoneNumberEndpoint(ICommandMediator commandMediator)
         AllowAnonymous();
     }
 
-    public override async Task HandleAsync(UpdateCustomerPhoneNumberCommand req, CancellationToken ct)
+    public override async Task HandleAsync(
+        UpdateCustomerPhoneNumberCommand req,
+        CancellationToken ct
+    )
     {
         await _commandMediator.SendAsync(req, ct);
         await Send.NoContentAsync(ct);

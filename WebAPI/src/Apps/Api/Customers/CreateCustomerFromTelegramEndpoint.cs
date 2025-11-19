@@ -15,7 +15,10 @@ public class CreateCustomerFromTelegramEndpoint(ICommandMediator commandMediator
         AllowAnonymous();
     }
 
-    public override async Task HandleAsync(CreateCustomerFromTelegramCommand req, CancellationToken ct)
+    public override async Task HandleAsync(
+        CreateCustomerFromTelegramCommand req,
+        CancellationToken ct
+    )
     {
         var customerId = await _commandMediator.SendAsync(req, ct);
         await Send.OkAsync(customerId, ct);

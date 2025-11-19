@@ -29,6 +29,17 @@ public class OrdersRepository : IOrdersRepository
         return await _context.Orders.Include(o => o.Items).FirstOrDefaultAsync(o => o.Id == id, ct);
     }
 
+    public async Task<ICollection<Order>> GetByCustomerIdAsync(
+        Guid customerId,
+        CancellationToken cancellationToken = default
+    )
+    {
+        return await _context
+            .Orders.Include(order => order.Items)
+            .Where(order => order.CustomerId == customerId)
+            .ToListAsync(cancellationToken);
+    }
+
     public async Task<ICollection<Order>> GetCollectionAsync(
         CancellationToken cancellationToken = default
     )

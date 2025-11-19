@@ -3,6 +3,7 @@ namespace Domain.Abstractions;
 public abstract class BaseEntity<TId>
 {
     public TId Id { get; protected set; }
+    public DateTime CreatedAt { get; protected set; }
 
     private readonly List<IDomainEvent> _domainEvents = new();
 
@@ -11,6 +12,7 @@ public abstract class BaseEntity<TId>
     protected BaseEntity(TId id)
     {
         Id = id;
+        CreatedAt = DateTime.UtcNow;
     }
 
     // For ORM frameworks (like EF Core) that may require a parameterless constructor
