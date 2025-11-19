@@ -74,13 +74,13 @@ public class Customer : BaseEntity<Guid>, IAggregateRoot
         _addresses.Add(address);
     }
 
-    public void UpdateAddress(Address address)
+    public void UpdateAddress(Guid addressId, LocationPoint location, string name)
     {
-        var existing = _addresses.FirstOrDefault(a => a.Id == address.Id);
+        var existing = _addresses.FirstOrDefault(a => a.Id == addressId);
         if (existing != null)
         {
-            existing.UpdateName(address.Name);
-            existing.UpdateLocation(address.Location);
+            existing.UpdateName(name);
+            existing.UpdateLocation(location);
         }
     }
 
