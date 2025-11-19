@@ -4,20 +4,20 @@ namespace Domain.Aggregates.Customer;
 
 public class Customer : BaseEntity<Guid>, IAggregateRoot
 {
-    public string? Name { get; private set; }
+    public string Name { get; private set; }
     public PhoneNumber? PhoneNumber { get; private set; }
     public TelegramId? TelegramId { get; private set; }
     public IReadOnlyCollection<Address> Addresses => _addresses.AsReadOnly();
 
-    private readonly List<Address> _addresses = new();
+    private readonly List<Address> _addresses = [];
 
 #pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring as nullable.
-#pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring as nullable.
     private Customer() { } // For ORMs
+#pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring as nullable.
 
     private Customer(
         Guid id,
-        string? name,
+        string name,
         PhoneNumber? phoneNumber,
         TelegramId? telegramId,
         List<Address> addresses
@@ -30,15 +30,27 @@ public class Customer : BaseEntity<Guid>, IAggregateRoot
         _addresses = addresses;
     }
 
-    public static Customer CreateFromTelegram(TelegramId telegramId)
+    public static Customer Create(string name)
     {
         return new Customer(
             id: Guid.NewGuid(),
-            name: null,
+            name: name,
             phoneNumber: null,
-            telegramId: telegramId,
+            telegramId: null,
             addresses: []
         );
+    }
+
+    public Customer WithPhoneNumber(PhoneNumber phoneNumber)
+    {
+        UpdatePhoneNumber(phoneNumber);
+        return this;
+    }
+
+    public Customer WithTelegramId(TelegramId telegramId)
+    {
+        UpdateTelegramId(telegramId);
+        return this;
     }
 
     public void UpdateName(string name)
