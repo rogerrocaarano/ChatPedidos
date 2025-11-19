@@ -1,5 +1,3 @@
-using Domain.Abstractions;
-
 namespace Domain.Aggregates.Order;
 
 public class OrderItem : BaseEntity<Guid>

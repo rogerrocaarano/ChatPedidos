@@ -1,4 +1,3 @@
-using Domain.Abstractions;
 using Domain.Aggregates.Common;
 
 namespace Domain.Aggregates.Order;

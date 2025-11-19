@@ -1,8 +1,9 @@
 using Domain.Aggregates.Customer;
+using Domain.Repositories;
 
 namespace Persistence.Repositories;
 
-public class CustomersRepository : IRepository<Customer>
+public class CustomersRepository : ICustomersRepository
 {
     private readonly AppDbContext _context;
 
@@ -28,5 +29,14 @@ public class CustomersRepository : IRepository<Customer>
         return await _context
             .Customers.Include(c => c.Addresses)
             .FirstOrDefaultAsync(c => c.Id == id, ct);
+    }
+
+    public async Task<ICollection<Customer>> GetCollectionAsync(
+        CancellationToken cancellationToken = default
+    )
+    {
+        return await _context
+            .Customers.Include(customer => customer.Addresses)
+            .ToListAsync(cancellationToken);
     }
 }

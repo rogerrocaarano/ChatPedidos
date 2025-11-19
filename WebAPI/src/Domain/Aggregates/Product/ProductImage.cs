@@ -1,5 +1,3 @@
-using Domain.Abstractions;
-
 namespace Domain.Aggregates.Product;
 
 public class ProductImage : BaseEntity<Guid>

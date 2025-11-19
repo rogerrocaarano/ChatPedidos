@@ -1,5 +1,3 @@
-using Domain.Abstractions;
-
 namespace Domain.Aggregates.Product;
 
 public class Product : BaseEntity<Guid>, IAggregateRoot
@@ -33,31 +31,36 @@ public class Product : BaseEntity<Guid>, IAggregateRoot
         MainImageId = mainImageId;
     }
 
-    public static Product Create(string name, string description, decimal price)
+    public static Product Create(string name)
     {
         return new Product(
             id: Guid.NewGuid(),
             name: name,
-            description: description,
-            price: price,
+            description: string.Empty,
+            price: 0m,
             isAvailable: true,
             images: new List<ProductImage>(),
             mainImageId: null
         );
     }
 
-    public void UpdateDetails(string name, string description, decimal price)
-    {
-        Name = name;
-        Description = description;
-        Price = price;
-    }
-
     public void UpdateName(string name) => Name = name;
 
     public void UpdateDescription(string description) => Description = description;
 
+    public Product WithDescription(string description)
+    {
+        UpdateDescription(description);
+        return this;
+    }
+
     public void UpdatePrice(decimal price) => Price = price;
+
+    public Product WithPrice(decimal price)
+    {
+        UpdatePrice(price);
+        return this;
+    }
 
     public void SetProductAsAvailable() => IsAvailable = true;
 

@@ -1,4 +1,4 @@
-using Domain.Aggregates.Customer;
+using Domain.Repositories;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Persistence.Repositories;
@@ -17,7 +17,9 @@ public static class DependencyInjection
         services.AddDbContext<AppDbContext>(options => options.UseNpgsql(connectionString));
 
         // Register repositories
-        services.AddScoped<IRepository<Customer>, CustomersRepository>();
+        services.AddScoped<ICustomersRepository, CustomersRepository>();
+        services.AddScoped<IOrdersRepository, OrdersRepository>();
+        services.AddScoped<IProductsRepository, ProductsRepository>();
 
         return services;
     }
