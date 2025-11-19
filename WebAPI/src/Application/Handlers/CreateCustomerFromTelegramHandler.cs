@@ -1,9 +1,9 @@
-using Domain.Abstractions;
+using Application.Commands;
 using Domain.Aggregates.Customer;
 using Domain.Repositories;
 using LiteBus.Commands.Abstractions;
 
-namespace Application.Features.CreateCustomerFromTelegram;
+namespace Application.Handlers;
 
 public sealed class CreateCustomerFromTelegramHandler(ICustomersRepository customerRepository)
     : ICommandHandler<CreateCustomerFromTelegramCommand, Guid>

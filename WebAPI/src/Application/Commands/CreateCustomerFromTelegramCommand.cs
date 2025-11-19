@@ -1,6 +1,5 @@
-using Domain.Aggregates.Customer;
 using LiteBus.Commands.Abstractions;
 
-namespace Application.Features.CreateCustomerFromTelegram;
+namespace Application.Commands;
 
 public sealed record CreateCustomerFromTelegramCommand(long TelegramId) : ICommand<Guid> { }
