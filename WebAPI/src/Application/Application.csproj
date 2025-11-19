@@ -5,8 +5,14 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="LiteBus.Commands.Extensions.Microsoft.DependencyInjection" Version="4.2.0" />
-    <PackageReference Include="LiteBus.Queries.Extensions.Microsoft.DependencyInjection" Version="4.2.0" />
+    <PackageReference
+      Include="LiteBus.Commands.Extensions.Microsoft.DependencyInjection"
+      Version="4.2.0"
+    />
+    <PackageReference
+      Include="LiteBus.Queries.Extensions.Microsoft.DependencyInjection"
+      Version="4.2.0"
+    />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="../Domain/Domain.csproj" />
