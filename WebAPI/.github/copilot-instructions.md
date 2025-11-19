@@ -27,6 +27,8 @@ delivery/order system integrated with Telegram.
 - **Business Logic**: Encapsulated in aggregates with state guards.
 - **Infrastructure**: EF Core with PostgreSQL, repositories implement
   `IRepository<T>`, LiteBus for commands.
+- **API**: Uses FastEndpoints for endpoint definitions with request/response
+  records.
 
 ## Patterns and Conventions
 
@@ -35,11 +37,13 @@ delivery/order system integrated with Telegram.
 - **Status Transitions**: Strict enum-based flow in `Order` (see `OrderStatus`
   enum for valid transitions).
 - **Entity Configurations**: Use `IEntityTypeConfiguration` for EF mappings
-  (e.g., `CustomerConfiguration` owns many `Addresses`).
+  (e.g., `CustomerConfiguration` owns many `Addresses` with owned
+  `LocationPoint`).
 - **Commands**: Use LiteBus with records implementing `ICommand<TResult>`,
   handlers inject `IRepository<T>`.
 - **Persistence**: `AppDbContext` applies configurations from assembly, uses
   Npgsql.
+- **API Endpoints**: FastEndpoints inject `ICommandMediator` to send commands.
 
 ## Key Files
 
@@ -50,6 +54,9 @@ delivery/order system integrated with Telegram.
 - Value Objects: `src/Domain/Aggregates/Common/LocationPoint.cs`
 - Configurations:
   `src/Infrastructure/Persistence/Configurations/CustomerConfiguration.cs`
+- Commands: `src/Application/Commands/CreateCustomerFromTelegramCommand.cs`
+- Handlers: `src/Application/Handlers/CreateCustomerFromTelegramHandler.cs`
+- Endpoints: `src/Apps/Api/Endpoints/Products/CreateProductEndpoint.cs`
 - Diagrams: `docs/CustomerAggregate.mermaid`, `docs/OrderAggregate.mermaid`
 
 ## Workflows
@@ -59,6 +66,8 @@ delivery/order system integrated with Telegram.
 - Run: `dotnet run --project src/Apps/Api/Api.csproj`
 - Debug: Use VS Code .NET debugger on `src/Apps/Api/Api.csproj` (launch profiles
   in `Properties/launchSettings.json`)
+- Migrations:
+  `dotnet dotnet-ef migrations add <Name> --project Infrastructure/Persistence --startup-project Infrastructure/Migrator --output-dir Migrations`
 
 ### Adding a New Aggregate
 
@@ -82,5 +91,5 @@ To add a new aggregate (e.g., `Order`):
 
 - Telegram integration via `TelegramId` value object in `Customer`.
 - External dependencies: PostgreSQL (connection string in user secrets), LiteBus
-  for commands.
+  for commands, FastEndpoints for API.
 - Future: Payment (`PaymentId`), rider (`RiderId`) services.
