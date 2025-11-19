@@ -3,6 +3,7 @@ namespace Domain.Abstractions;
 public abstract class BaseEntity<TId>
 {
     public TId Id { get; protected set; }
+    public DateTime CreatedAt { get; protected set; }
 
     private readonly List<IDomainEvent> _domainEvents = new();
 
@@ -11,10 +12,13 @@ public abstract class BaseEntity<TId>
     protected BaseEntity(TId id)
     {
         Id = id;
+        CreatedAt = DateTime.UtcNow;
     }
 
     // For ORM frameworks (like EF Core) that may require a parameterless constructor
+#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring as nullable.
     protected BaseEntity() { }
+#pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring as nullable.
 
     public void AddDomainEvent(IDomainEvent domainEvent)
     {
