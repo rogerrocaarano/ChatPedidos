@@ -1,5 +1,6 @@
 using LiteBus.Commands;
 using LiteBus.Extensions.Microsoft.DependencyInjection;
+using LiteBus.Queries;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Application;
@@ -15,7 +16,7 @@ public static class DependencyInjection
 
             // Scan the assembly for all command/query/event handlers
             liteBus.AddCommandModule(module => module.RegisterFromAssembly(appAssembly));
-            // liteBus.AddQueryModule(module => module.RegisterFromAssembly(appAssembly));
+            liteBus.AddQueryModule(module => module.RegisterFromAssembly(appAssembly));
             // liteBus.AddEventModule(module => module.RegisterFromAssembly(appAssembly));
         });
 
