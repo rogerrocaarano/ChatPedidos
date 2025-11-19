@@ -1,8 +1,7 @@
-using Domain.Aggregates.Product;
 using Domain.Repositories;
 using LiteBus.Commands.Abstractions;
 
-namespace Application.Commands.Handlers;
+namespace Application.Product.Commands.Handlers;
 
 public class CreateProductHandler(IProductsRepository productsRepository)
     : ICommandHandler<CreateProductCommand, Guid>
@@ -12,8 +11,8 @@ public class CreateProductHandler(IProductsRepository productsRepository)
         CancellationToken cancellationToken = default
     )
     {
-        var product = Product
-            .Create(message.Name)
+        var product = global::Domain
+            .Aggregates.Product.Product.Create(message.Name)
             .WithDescription(message.Description)
             .WithPrice(message.Price);
 

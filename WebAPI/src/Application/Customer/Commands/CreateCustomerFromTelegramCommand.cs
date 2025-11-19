@@ -1,5 +1,5 @@
 using LiteBus.Commands.Abstractions;
 
-namespace Application.Commands;
+namespace Application.Customer.Commands;
 
 public sealed record CreateCustomerFromTelegramCommand(long TelegramId) : ICommand<Guid> { }

@@ -1,4 +1,4 @@
-using Application.Commands;
+using Application.Product.Commands;
 using FastEndpoints;
 using LiteBus.Commands.Abstractions;
 

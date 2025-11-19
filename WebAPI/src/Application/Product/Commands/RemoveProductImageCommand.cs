@@ -1,5 +1,5 @@
 using LiteBus.Commands.Abstractions;
 
-namespace Application.Commands;
+namespace Application.Product.Commands;
 
 public sealed record RemoveProductImageCommand(Guid ProductId, Guid ImageId) : ICommand;

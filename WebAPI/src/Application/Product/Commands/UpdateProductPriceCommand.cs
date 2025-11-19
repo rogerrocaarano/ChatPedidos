@@ -1,5 +1,5 @@
 using LiteBus.Commands.Abstractions;
 
-namespace Application.Commands;
+namespace Application.Product.Commands;
 
 public sealed record UpdateProductPriceCommand(Guid ProductId, decimal Price) : ICommand;

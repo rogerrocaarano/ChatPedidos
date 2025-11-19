@@ -1,5 +1,5 @@
-using Application.Queries;
-using Application.Queries.DTOs;
+using Application.Product.Queries;
+using Application.Product.Queries.DTOs;
 using FastEndpoints;
 using LiteBus.Queries.Abstractions;
 

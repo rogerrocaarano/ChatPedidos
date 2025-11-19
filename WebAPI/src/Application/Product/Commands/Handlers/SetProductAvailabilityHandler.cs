@@ -1,13 +1,13 @@
 using Domain.Repositories;
 using LiteBus.Commands.Abstractions;
 
-namespace Application.Commands.Handlers;
+namespace Application.Product.Commands.Handlers;
 
-public class UpdateProductPriceHandler(IProductsRepository productsRepository)
-    : ICommandHandler<UpdateProductPriceCommand>
+public class SetProductAvailabilityHandler(IProductsRepository productsRepository)
+    : ICommandHandler<SetProductAvailabilityCommand>
 {
     public async Task HandleAsync(
-        UpdateProductPriceCommand message,
+        SetProductAvailabilityCommand message,
         CancellationToken cancellationToken = default
     )
     {
@@ -17,7 +17,15 @@ public class UpdateProductPriceHandler(IProductsRepository productsRepository)
             throw new InvalidOperationException("Product not found");
         }
 
-        product.UpdatePrice(message.Price);
+        if (message.IsAvailable)
+        {
+            product.SetProductAsAvailable();
+        }
+        else
+        {
+            product.SetProductAsUnavailable();
+        }
+
         await productsRepository.UnitOfWork.SaveChangesAsync(cancellationToken);
     }
 }

@@ -1,12 +1,12 @@
-using Application.Queries;
-using Application.Queries.DTOs;
+using Application.Product.Queries;
+using Application.Product.Queries.DTOs;
 using FastEndpoints;
 using LiteBus.Queries.Abstractions;
 
 namespace Api.Products;
 
 public class GetAllProductsEndpoint(IQueryMediator _queryMediator)
-    : Endpoint<EmptyRequest, List<ProductListItemDto>>
+    : Endpoint<EmptyRequest, List<ProductListDto>>
 {
     private readonly IQueryMediator _queryMediator = _queryMediator;
 

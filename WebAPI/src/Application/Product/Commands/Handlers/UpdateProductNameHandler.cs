@@ -1,13 +1,13 @@
 using Domain.Repositories;
 using LiteBus.Commands.Abstractions;
 
-namespace Application.Commands.Handlers;
+namespace Application.Product.Commands.Handlers;
 
-public class AddProductImageHandler(IProductsRepository productsRepository)
-    : ICommandHandler<AddProductImageCommand>
+public class UpdateProductNameHandler(IProductsRepository productsRepository)
+    : ICommandHandler<UpdateProductNameCommand>
 {
     public async Task HandleAsync(
-        AddProductImageCommand message,
+        UpdateProductNameCommand message,
         CancellationToken cancellationToken = default
     )
     {
@@ -17,7 +17,7 @@ public class AddProductImageHandler(IProductsRepository productsRepository)
             throw new InvalidOperationException("Product not found");
         }
 
-        product.AddImage(message.ImageUrl, message.SetAsMain);
+        product.UpdateName(message.Name);
         await productsRepository.UnitOfWork.SaveChangesAsync(cancellationToken);
     }
 }
