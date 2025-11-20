@@ -34,6 +34,7 @@
     }
   },
   "remoteEnv": {
-    "CLOUDFLARED_TUNNEL_TOKEN": "${localEnv:CLOUDFLARED_TUNNEL_TOKEN}"
+    "CLOUDFLARED_TUNNEL_TOKEN": "${localEnv:CLOUDFLARED_TUNNEL_TOKEN}",
+    "TELEGRAM__TOKEN": "${localEnv:TELEGRAM_TOKEN}"
   }
 }
