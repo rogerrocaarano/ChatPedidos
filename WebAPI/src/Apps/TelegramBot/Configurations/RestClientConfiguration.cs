@@ -1,4 +1,5 @@
 using System.Text.Json;
+using System.Text.Json.Serialization;
 using RestSharp;
 using RestSharp.Serializers.Json;
 
@@ -17,6 +18,7 @@ public static class RestClientConfiguration
         {
             PropertyNamingPolicy = JsonNamingPolicy.SnakeCaseLower,
             PropertyNameCaseInsensitive = true,
+            DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
         };
 
         var client = new RestClient(
