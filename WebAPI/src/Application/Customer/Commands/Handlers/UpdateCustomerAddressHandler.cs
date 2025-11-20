@@ -1,5 +1,5 @@
-using Domain.ValueObjects;
 using Domain.Repositories;
+using Domain.ValueObjects;
 using LiteBus.Commands.Abstractions;
 
 namespace Application.Customer.Commands.Handlers;
