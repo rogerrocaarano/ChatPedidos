@@ -7,39 +7,38 @@ using TelegramBot.Interaction;
 
 namespace TelegramBot.Adapters;
 
-public class TelegramProvider(RestClient apiClient) : IChatProviderPort<TelegramId>
+public class TelegramProvider(RestClient apiClient) : ITelegramPort
 {
     private readonly RestClient _apiClient = apiClient;
 
-    public async Task SendMessageAsync(TelegramId toId, string message)
+    public async Task SendMessageAsync(TelegramId id, string message)
     {
-        var body = SendMessageRequest.Create(toId.Id, message);
-        var request = new RestRequest("sendMessage").AddJsonBody(body);
-        await _apiClient.PostAsync<Message>(request);
-    }
-
-    public Task SendProductCatalogAsync(TelegramId toId)
-    {
-        throw new NotImplementedException();
-    }
-
-    public async Task SendWelcomeMessageAsync(TelegramId toId)
-    {
-        var keyboard = ReplyKeyboardMarkup.Create(
-            [
-                KeyboardButton.WithText("Hacer un pedido"),
-                KeyboardButton.WithText("Horarios de atención"),
-            ]
-        );
-        var message = "¡Bienvenido! ¿En qué puedo ayudarte hoy?";
-        var body = SendMessageRequest.Create(toId.Id, message).WithReplyMarkup(keyboard);
+        var body = SendMessageRequest.Create(id.Id, message);
         var request = new RestRequest("sendMessage").AddJsonBody(body);
         var response = await _apiClient.ExecutePostAsync<Message>(request);
         if (!response.IsSuccessful)
         {
-            await SendMessageAsync(
-                toId,
-                response.Content ?? "Error al enviar el mensaje de bienvenida."
+            throw new Exception(
+                $"Failed to send message to Telegram ID {id.Id}. Response: {response.Content}"
+            );
+        }
+    }
+
+    public async Task SendMessageWithOptionsAsync(
+        TelegramId id,
+        string message,
+        ICollection<BotOption> options
+    )
+    {
+        var buttons = options.Select(option => KeyboardButton.WithText(option.Value)).ToList();
+        var keyboard = ReplyKeyboardMarkup.Create(buttons);
+        var body = SendMessageRequest.Create(id.Id, message).WithReplyMarkup(keyboard);
+        var request = new RestRequest("sendMessage").AddJsonBody(body);
+        var response = await _apiClient.ExecutePostAsync<Message>(request);
+        if (!response.IsSuccessful)
+        {
+            throw new Exception(
+                $"Failed to send message with options to Telegram ID {id.Id}. Response: {response.Content}"
             );
         }
     }
