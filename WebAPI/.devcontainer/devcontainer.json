@@ -18,7 +18,8 @@
         "MermaidChart.vscode-mermaid-chart",
         "esbenp.prettier-vscode",
         "csharpier.csharpier-vscode",
-        "mhutchie.git-graph"
+        "mhutchie.git-graph",
+        "ms-ossdata.vscode-pgsql"
       ],
       "settings": {
         "csharp.preview.improvedLaunchExperience": false,
