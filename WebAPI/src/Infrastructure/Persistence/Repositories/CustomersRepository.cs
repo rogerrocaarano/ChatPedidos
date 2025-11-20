@@ -1,5 +1,6 @@
 using Domain.Aggregates.Customer;
 using Domain.Repositories;
+using Domain.ValueObjects;
 
 namespace Persistence.Repositories;
 
@@ -38,5 +39,15 @@ public class CustomersRepository : ICustomersRepository
         return await _context
             .Customers.Include(customer => customer.Addresses)
             .ToListAsync(cancellationToken);
+    }
+
+    public Task<Customer?> GetByTelegramIdAsync(
+        TelegramId telegramId,
+        CancellationToken cancellationToken = default
+    )
+    {
+        return _context
+            .Customers.Include(c => c.Addresses)
+            .FirstOrDefaultAsync(c => c.TelegramId == telegramId, cancellationToken);
     }
 }
