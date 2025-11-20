@@ -23,11 +23,21 @@ public class ReplyKeyboardMarkup
 
     public static ReplyKeyboardMarkup Create(IEnumerable<KeyboardButton> keyboard)
     {
-        var markup = new ReplyKeyboardMarkup
+        var markup = new ReplyKeyboardMarkup();
+        foreach (var button in keyboard)
         {
-            Keyboard = [.. keyboard.Select(kb => (ICollection<KeyboardButton>)[kb])],
-        };
+            markup.AddButton(button);
+        }
         return markup;
+    }
+
+    public void AddButton(KeyboardButton button)
+    {
+        var buttons = new List<ICollection<KeyboardButton>>(Keyboard)
+        {
+            new List<KeyboardButton> { button },
+        };
+        Keyboard = buttons;
     }
 
     public ReplyKeyboardMarkup WithPersistent(bool isPersistent = true)
