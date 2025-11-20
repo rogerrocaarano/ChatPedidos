@@ -18,10 +18,7 @@ public class WebhookUpdatesEndpoint(TelegramProvider telegramProvider) : Endpoin
     public override async Task HandleAsync(Update req, CancellationToken ct)
     {
         var telegramId = new TelegramId(req.Message.From.Id);
-        await _telegramProvider.SendMessageAsync(
-            telegramId,
-            "Your message has been received via webhook!"
-        );
+        await _telegramProvider.SendWelcomeMessageAsync(telegramId);
 
         await Send.OkAsync(cancellation: ct);
     }
