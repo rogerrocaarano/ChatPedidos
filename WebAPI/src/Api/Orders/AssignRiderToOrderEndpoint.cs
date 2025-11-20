@@ -1,4 +1,4 @@
-using Application.Order.Commands;
+using Application.Order.Commands.AssignRiderToOrder;
 using FastEndpoints;
 using LiteBus.Commands.Abstractions;
 

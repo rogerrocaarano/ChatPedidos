@@ -11,14 +11,11 @@ public class GetCustomerByTelegramIdEndpoint(IQueryMediator queryMediator)
 
     public override void Configure()
     {
-        Get("/customers/by-telegram/{telegramId:long}");
+        Get("/customers/by-telegram-id/{telegramId:long}");
         AllowAnonymous();
     }
 
-    public override async Task HandleAsync(
-        GetCustomerByTelegramIdQuery req,
-        CancellationToken ct
-    )
+    public override async Task HandleAsync(GetCustomerByTelegramIdQuery req, CancellationToken ct)
     {
         var customer = await _queryMediator.QueryAsync(req, ct);
         if (customer == null)

@@ -1,4 +1,4 @@
-using Application.Customer.Commands;
+using Application.Customer.Commands.CreateCustomerFromTelegram;
 using FastEndpoints;
 using LiteBus.Commands.Abstractions;
 

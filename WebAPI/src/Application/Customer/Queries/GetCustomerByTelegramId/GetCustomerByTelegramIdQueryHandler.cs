@@ -1,4 +1,3 @@
-using Application.Customer.Queries.GetCustomerByTelegramId;
 using Domain.Repositories;
 using LiteBus.Queries.Abstractions;
 
@@ -22,20 +21,14 @@ public class GetCustomerByTelegramIdQueryHandler(ICustomersRepository customersR
         if (customer == null)
             return null;
 
-        var phoneNumberDto = customer.PhoneNumber != null
-            ? new PhoneNumberDto(
-                customer.PhoneNumber.CountryCode,
-                customer.PhoneNumber.Number
-            )
-            : null;
+        var phoneNumberDto =
+            customer.PhoneNumber != null
+                ? new PhoneNumberDto(customer.PhoneNumber.CountryCode, customer.PhoneNumber.Number)
+                : null;
 
-        var addresses = customer.Addresses.Select(address =>
-            new AddressDto(
-                address.Id,
-                address.Location,
-                address.Name
-            )
-        ).ToList();
+        var addresses = customer
+            .Addresses.Select(address => new AddressDto(address.Id, address.Location, address.Name))
+            .ToList();
 
         return new CustomerDto(
             customer.Id,

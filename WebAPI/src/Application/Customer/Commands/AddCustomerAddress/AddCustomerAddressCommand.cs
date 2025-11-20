@@ -1,6 +1,6 @@
 using LiteBus.Commands.Abstractions;
 
-namespace Application.Customer.Commands;
+namespace Application.Customer.Commands.AddCustomerAddress;
 
 public sealed record AddCustomerAddressCommand(
     Guid CustomerId,

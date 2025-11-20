@@ -1,6 +1,6 @@
 using LiteBus.Commands.Abstractions;
 
-namespace Application.Order.Commands;
+namespace Application.Order.Commands.AddOrderItem;
 
 public sealed record AddOrderItemCommand(
     Guid OrderId,

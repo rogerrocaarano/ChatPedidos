@@ -12,8 +12,4 @@ public record CustomerDto(
 
 public record PhoneNumberDto(string CountryCode, string Number);
 
-public record AddressDto(
-    Guid Id,
-    LocationPoint Location,
-    string Name
-);
+public record AddressDto(Guid Id, LocationPoint Location, string Name);

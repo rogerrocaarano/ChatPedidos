@@ -1,4 +1,3 @@
-using Domain.Aggregates.Order;
 using Domain.Repositories;
 using LiteBus.Commands.Abstractions;
 

@@ -1,4 +1,3 @@
-using Application.Customer.Queries.GetCustomerByTelegramId;
 using Domain.ValueObjects;
 using LiteBus.Queries.Abstractions;
 

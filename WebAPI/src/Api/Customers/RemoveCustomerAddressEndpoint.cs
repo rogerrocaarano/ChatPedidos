@@ -1,4 +1,4 @@
-using Application.Customer.Commands;
+using Application.Customer.Commands.RemoveCustomerAddress;
 using FastEndpoints;
 using LiteBus.Commands.Abstractions;
 

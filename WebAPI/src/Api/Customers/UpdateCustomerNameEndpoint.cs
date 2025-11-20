@@ -1,4 +1,4 @@
-using Application.Customer.Commands;
+using Application.Customer.Commands.UpdateCustomerName;
 using FastEndpoints;
 using LiteBus.Commands.Abstractions;
 

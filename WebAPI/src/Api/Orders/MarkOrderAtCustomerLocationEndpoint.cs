@@ -1,4 +1,4 @@
-using Application.Order.Commands;
+using Application.Order.Commands.MarkOrderAtCustomerLocation;
 using FastEndpoints;
 using LiteBus.Commands.Abstractions;
 
