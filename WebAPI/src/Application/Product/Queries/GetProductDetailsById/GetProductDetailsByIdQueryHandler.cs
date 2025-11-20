@@ -1,8 +1,8 @@
-using Application.Product.Queries.DTOs;
+using Application.Product.Queries.GetProductDetailsById;
 using Domain.Repositories;
 using LiteBus.Queries.Abstractions;
 
-namespace Application.Product.Queries.Handlers;
+namespace Application.Product.Queries.GetProductDetailsById;
 
 public sealed class GetProductDetailsByIdQueryHandler(IProductsRepository productsRepository)
     : IQueryHandler<GetProductDetailsByIdQuery, ProductDetailsDto>

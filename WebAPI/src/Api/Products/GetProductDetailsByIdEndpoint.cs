@@ -1,5 +1,4 @@
-using Application.Product.Queries;
-using Application.Product.Queries.DTOs;
+using Application.Product.Queries.GetProductDetailsById;
 using FastEndpoints;
 using LiteBus.Queries.Abstractions;
 

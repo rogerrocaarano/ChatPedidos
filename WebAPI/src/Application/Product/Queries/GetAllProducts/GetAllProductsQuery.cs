@@ -1,6 +1,6 @@
-using Application.Product.Queries.DTOs;
+using Application.Product.Queries.GetAllProducts;
 using LiteBus.Queries.Abstractions;
 
-namespace Application.Product.Queries;
+namespace Application.Product.Queries.GetAllProducts;
 
 public record GetAllProductsQuery : IQuery<List<ProductListDto>>;

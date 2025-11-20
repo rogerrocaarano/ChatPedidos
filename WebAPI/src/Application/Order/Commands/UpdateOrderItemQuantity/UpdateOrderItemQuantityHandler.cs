@@ -1,7 +1,7 @@
 using Domain.Repositories;
 using LiteBus.Commands.Abstractions;
 
-namespace Application.Order.Commands.Handlers;
+namespace Application.Order.Commands.UpdateOrderItemQuantity;
 
 public class UpdateOrderItemQuantityHandler(IOrdersRepository ordersRepository)
     : ICommandHandler<UpdateOrderItemQuantityCommand>

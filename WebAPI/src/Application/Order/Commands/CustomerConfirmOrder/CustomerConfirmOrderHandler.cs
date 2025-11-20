@@ -1,7 +1,7 @@
 using Domain.Repositories;
 using LiteBus.Commands.Abstractions;
 
-namespace Application.Order.Commands.Handlers;
+namespace Application.Order.Commands.CustomerConfirmOrder;
 
 public class CustomerConfirmOrderHandler(IOrdersRepository ordersRepository)
     : ICommandHandler<CustomerConfirmOrderCommand>

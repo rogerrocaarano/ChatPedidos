@@ -2,7 +2,7 @@ using Domain.Repositories;
 using LiteBus.Commands.Abstractions;
 using Aggregate = Domain.Aggregates.Product;
 
-namespace Application.Product.Commands.Handlers;
+namespace Application.Product.Commands.CreateProduct;
 
 public class CreateProductHandler(IProductsRepository productsRepository)
     : ICommandHandler<CreateProductCommand, Guid>

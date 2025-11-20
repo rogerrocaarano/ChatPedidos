@@ -1,7 +1,7 @@
 using Domain.Repositories;
 using LiteBus.Commands.Abstractions;
 
-namespace Application.Product.Commands.Handlers;
+namespace Application.Product.Commands.UpdateProductDescription;
 
 public class UpdateProductDescriptionHandler(IProductsRepository productsRepository)
     : ICommandHandler<UpdateProductDescriptionCommand>

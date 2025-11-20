@@ -1,7 +1,7 @@
 using Domain.Repositories;
 using LiteBus.Commands.Abstractions;
 
-namespace Application.Order.Commands.Handlers;
+namespace Application.Order.Commands.MarkOrderAtCustomerLocation;
 
 public class MarkOrderAtCustomerLocationHandler(IOrdersRepository ordersRepository)
     : ICommandHandler<MarkOrderAtCustomerLocationCommand>

@@ -1,7 +1,7 @@
 using Domain.Repositories;
 using LiteBus.Commands.Abstractions;
 
-namespace Application.Order.Commands.Handlers;
+namespace Application.Order.Commands.AssignRiderToOrder;
 
 public class AssignRiderToOrderHandler(IOrdersRepository ordersRepository)
     : ICommandHandler<AssignRiderToOrderCommand>

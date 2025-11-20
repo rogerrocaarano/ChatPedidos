@@ -1,7 +1,7 @@
 using Domain.Repositories;
 using LiteBus.Commands.Abstractions;
 
-namespace Application.Order.Commands.Handlers;
+namespace Application.Order.Commands.RemoveOrderItem;
 
 public class RemoveOrderItemHandler(IOrdersRepository ordersRepository)
     : ICommandHandler<RemoveOrderItemCommand>

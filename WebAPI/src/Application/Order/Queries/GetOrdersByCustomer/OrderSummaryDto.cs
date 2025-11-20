@@ -1,6 +1,6 @@
 using Domain.Aggregates.Order;
 
-namespace Application.Order.Queries.DTOs;
+namespace Application.Order.Queries.GetOrdersByCustomer;
 
 public record OrderSummaryDto(
     Guid Id,

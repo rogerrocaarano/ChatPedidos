@@ -3,7 +3,7 @@ using Domain.ValueObjects;
 using LiteBus.Commands.Abstractions;
 using Aggregate = Domain.Aggregates.Customer;
 
-namespace Application.Customer.Commands.Handlers;
+namespace Application.Customer.Commands.CreateCustomerFromTelegram;
 
 public sealed class CreateCustomerFromTelegramHandler(ICustomersRepository customerRepository)
     : ICommandHandler<CreateCustomerFromTelegramCommand, Guid>

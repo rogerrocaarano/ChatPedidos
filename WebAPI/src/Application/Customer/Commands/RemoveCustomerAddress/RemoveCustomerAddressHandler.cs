@@ -1,7 +1,7 @@
 using Domain.Repositories;
 using LiteBus.Commands.Abstractions;
 
-namespace Application.Customer.Commands.Handlers;
+namespace Application.Customer.Commands.RemoveCustomerAddress;
 
 public class RemoveCustomerAddressHandler(ICustomersRepository customersRepository)
     : ICommandHandler<RemoveCustomerAddressCommand>

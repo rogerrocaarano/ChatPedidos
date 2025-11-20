@@ -1,5 +1,4 @@
-using Application.Order.Queries;
-using Application.Order.Queries.DTOs;
+using Application.Order.Queries.GetOrderDetails;
 using FastEndpoints;
 using LiteBus.Queries.Abstractions;
 

@@ -2,7 +2,7 @@ using Domain.Repositories;
 using Domain.ValueObjects;
 using LiteBus.Commands.Abstractions;
 
-namespace Application.Customer.Commands.Handlers;
+namespace Application.Customer.Commands.UpdateCustomerAddress;
 
 public class UpdateCustomerAddressHandler(ICustomersRepository customersRepository)
     : ICommandHandler<UpdateCustomerAddressCommand>

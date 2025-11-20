@@ -3,7 +3,7 @@ using Domain.ValueObjects;
 using LiteBus.Commands.Abstractions;
 using Aggregate = Domain.Aggregates.Customer;
 
-namespace Application.Customer.Commands.Handlers;
+namespace Application.Customer.Commands.UpdateCustomerPhoneNumber;
 
 public class UpdateCustomerPhoneNumberHandler(ICustomersRepository customersRepository)
     : ICommandHandler<UpdateCustomerPhoneNumberCommand>

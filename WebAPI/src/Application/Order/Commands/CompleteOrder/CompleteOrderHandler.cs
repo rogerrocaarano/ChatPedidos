@@ -1,7 +1,7 @@
 using Domain.Repositories;
 using LiteBus.Commands.Abstractions;
 
-namespace Application.Order.Commands.Handlers;
+namespace Application.Order.Commands.CompleteOrder;
 
 public class CompleteOrderHandler(IOrdersRepository ordersRepository)
     : ICommandHandler<CompleteOrderCommand>

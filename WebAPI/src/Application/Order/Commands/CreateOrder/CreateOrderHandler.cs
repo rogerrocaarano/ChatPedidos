@@ -2,7 +2,7 @@ using Domain.Aggregates.Order;
 using Domain.Repositories;
 using LiteBus.Commands.Abstractions;
 
-namespace Application.Order.Commands.Handlers;
+namespace Application.Order.Commands.CreateOrder;
 
 public class CreateOrderHandler(IOrdersRepository ordersRepository)
     : ICommandHandler<CreateOrderCommand, Guid>

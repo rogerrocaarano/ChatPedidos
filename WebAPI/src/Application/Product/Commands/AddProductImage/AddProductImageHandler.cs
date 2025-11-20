@@ -1,7 +1,7 @@
 using Domain.Repositories;
 using LiteBus.Commands.Abstractions;
 
-namespace Application.Product.Commands.Handlers;
+namespace Application.Product.Commands.AddProductImage;
 
 public class AddProductImageHandler(IProductsRepository productsRepository)
     : ICommandHandler<AddProductImageCommand>

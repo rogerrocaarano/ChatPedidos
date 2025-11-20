@@ -1,7 +1,7 @@
 using Domain.Repositories;
 using LiteBus.Commands.Abstractions;
 
-namespace Application.Order.Commands.Handlers;
+namespace Application.Order.Commands.MarkOrderOnTheWay;
 
 public class MarkOrderOnTheWayHandler(IOrdersRepository ordersRepository)
     : ICommandHandler<MarkOrderOnTheWayCommand>

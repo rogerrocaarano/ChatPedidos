@@ -2,7 +2,7 @@ using Domain.Repositories;
 using Domain.ValueObjects;
 using LiteBus.Commands.Abstractions;
 
-namespace Application.Order.Commands.Handlers;
+namespace Application.Order.Commands.SetOrderClientLocation;
 
 public class SetOrderClientLocationHandler(IOrdersRepository ordersRepository)
     : ICommandHandler<SetOrderClientLocationCommand>

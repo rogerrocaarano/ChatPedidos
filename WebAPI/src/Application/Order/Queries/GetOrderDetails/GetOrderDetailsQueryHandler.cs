@@ -1,8 +1,8 @@
-using Application.Order.Queries.DTOs;
+using Application.Order.Queries.GetOrderDetails;
 using Domain.Repositories;
 using LiteBus.Queries.Abstractions;
 
-namespace Application.Order.Queries.Handlers;
+namespace Application.Order.Queries.GetOrderDetails;
 
 public class GetOrderDetailsQueryHandler(IOrdersRepository ordersRepository)
     : IQueryHandler<GetOrderDetailsQuery, OrderDetailsDto>

@@ -1,8 +1,8 @@
-using Application.Product.Queries.DTOs;
+using Application.Product.Queries.GetAllProducts;
 using Domain.Repositories;
 using LiteBus.Queries.Abstractions;
 
-namespace Application.Product.Queries.Handlers;
+namespace Application.Product.Queries.GetAllProducts;
 
 public class GetAllProductsQueryHandler(IProductsRepository repository)
     : IQueryHandler<GetAllProductsQuery, List<ProductListDto>>
