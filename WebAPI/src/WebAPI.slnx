@@ -1,6 +1,7 @@
 <Solution>
   <Folder Name="/Apps/">
     <Project Path="Apps/Api/Api.csproj" />
+    <Project Path="Apps/TelegramBot/TelegramBot.csproj" />
   </Folder>
   <Folder Name="/Infrastructure/">
     <Project Path="Infrastructure/Migrator/Migrator.csproj" />
