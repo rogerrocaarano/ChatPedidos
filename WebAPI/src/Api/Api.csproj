@@ -11,5 +11,6 @@
   <ItemGroup>
     <ProjectReference Include="../Application/Application.csproj" />
     <ProjectReference Include="../Infrastructure/Persistence/Persistence.csproj" />
+    <ProjectReference Include="../Infrastructure/TelegramBot/TelegramBot.csproj" />
   </ItemGroup>
 </Project>

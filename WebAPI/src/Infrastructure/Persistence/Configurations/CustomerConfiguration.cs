@@ -1,4 +1,5 @@
 using Domain.Aggregates.Customer;
+using Domain.ValueObjects;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Persistence.Configurations;

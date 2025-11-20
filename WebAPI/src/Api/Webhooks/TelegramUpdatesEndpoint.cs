@@ -1,17 +1,17 @@
-using Domain.Aggregates.Customer;
+using Domain.ValueObjects;
 using FastEndpoints;
 using TelegramBot.Adapters;
 using TelegramBot.DTOs.Types;
 
-namespace TelegramBot.Endpoints;
+namespace Api.Webhooks;
 
-public class WebhookUpdatesEndpoint(TelegramProvider telegramProvider) : Endpoint<Update>
+public class TelegramUpdatesEndpoint(TelegramProvider telegramProvider) : Endpoint<Update>
 {
     private readonly TelegramProvider _telegramProvider = telegramProvider;
 
     public override void Configure()
     {
-        Post("/updates/webhook");
+        Post("/webhooks/telegram-updates");
         AllowAnonymous();
     }
 

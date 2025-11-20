@@ -1,4 +1,5 @@
 using Domain.Repositories;
+using Domain.ValueObjects;
 using LiteBus.Commands.Abstractions;
 using Aggregate = Domain.Aggregates.Customer;
 
@@ -14,7 +15,7 @@ public sealed class CreateCustomerFromTelegramHandler(ICustomersRepository custo
         CancellationToken cancellationToken = default
     )
     {
-        var telegramId = new Aggregate.TelegramId(message.TelegramId);
+        var telegramId = new TelegramId(message.TelegramId);
         var customer = Aggregate.Customer.Create(message.Name).WithTelegramId(telegramId);
         _customerRepository.Add(customer);
         await _customerRepository.UnitOfWork.SaveChangesAsync(cancellationToken);

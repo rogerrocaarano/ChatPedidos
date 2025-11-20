@@ -1,4 +1,4 @@
-using Domain.Aggregates.Customer;
+using Domain.ValueObjects;
 using Domain.Ports;
 using RestSharp;
 using TelegramBot.DTOs.Requests;

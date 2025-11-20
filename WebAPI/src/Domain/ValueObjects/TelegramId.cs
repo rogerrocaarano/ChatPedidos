@@ -1,3 +1,3 @@
-namespace Domain.Aggregates.Customer;
+namespace Domain.ValueObjects;
 
 public record TelegramId(long Id) : IValueObject;

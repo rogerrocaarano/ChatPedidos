@@ -1,4 +1,4 @@
-using Domain.Aggregates.Common;
+using Domain.ValueObjects;
 using Domain.Repositories;
 using LiteBus.Commands.Abstractions;
 using Aggregate = Domain.Aggregates.Customer;

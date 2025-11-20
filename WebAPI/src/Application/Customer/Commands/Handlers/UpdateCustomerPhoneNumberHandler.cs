@@ -1,4 +1,5 @@
 using Domain.Repositories;
+using Domain.ValueObjects;
 using LiteBus.Commands.Abstractions;
 using Aggregate = Domain.Aggregates.Customer;
 
@@ -21,7 +22,7 @@ public class UpdateCustomerPhoneNumberHandler(ICustomersRepository customersRepo
             throw new InvalidOperationException("Customer not found");
         }
 
-        var phoneNumber = new Aggregate.PhoneNumber(message.CountryCode, message.Number);
+        var phoneNumber = new PhoneNumber(message.CountryCode, message.Number);
         customer.UpdatePhoneNumber(phoneNumber);
         await customersRepository.UnitOfWork.SaveChangesAsync(cancellationToken);
     }
