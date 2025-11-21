@@ -14,7 +14,8 @@
   "customizations": {
     "vscode": {
       "extensions": [
-        "ms-dotnettools.csdevkit",
+        // "ms-dotnettools.csdevkit",
+        "jetbrains.resharper-code",
         "MermaidChart.vscode-mermaid-chart",
         "esbenp.prettier-vscode",
         "csharpier.csharpier-vscode",

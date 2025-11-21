@@ -16,6 +16,5 @@
     <Folder Include="Adapters/" />
     <Folder Include="Configurations/" />
     <Folder Include="DTOs/" />
-    <Folder Include="Endpoints/" />
   </ItemGroup>
 </Project>
