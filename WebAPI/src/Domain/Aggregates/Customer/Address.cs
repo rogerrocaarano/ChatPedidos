@@ -1,4 +1,4 @@
-using Domain.Aggregates.Common;
+using Domain.ValueObjects;
 
 namespace Domain.Aggregates.Customer;
 

@@ -1,8 +1,5 @@
-using System;
-
 namespace Persistence.Configurations;
 
-using System;
 using Domain.Aggregates.Order;
 
 public class OrderConfiguration : IEntityTypeConfiguration<Order>

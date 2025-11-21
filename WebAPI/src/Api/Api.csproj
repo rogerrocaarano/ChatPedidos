@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="FastEndpoints" Version="7.1.1" />
+    <PackageReference Include="FastEndpoints.Swagger" Version="7.1.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="../Application/Application.csproj" />
+    <ProjectReference Include="../Infrastructure/Persistence/Persistence.csproj" />
+    <ProjectReference Include="../Infrastructure/TelegramBot/TelegramBot.csproj" />
+  </ItemGroup>
+</Project>

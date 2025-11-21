@@ -7,17 +7,20 @@
     "ghcr.io/devcontainers/features/dotnet": {
       "version": "10.0.100",
       "additionalVersions": "9.0.307"
-    }
+    },
+    "ghcr.io/joedmck/devcontainer-features/cloudflared:1": {}
   },
   "postCreateCommand": "dotnet tool restore",
   "customizations": {
     "vscode": {
       "extensions": [
-        "ms-dotnettools.csdevkit",
+        // "ms-dotnettools.csdevkit",
+        "jetbrains.resharper-code",
         "MermaidChart.vscode-mermaid-chart",
         "esbenp.prettier-vscode",
         "csharpier.csharpier-vscode",
-        "mhutchie.git-graph"
+        "mhutchie.git-graph",
+        "ms-ossdata.vscode-pgsql"
       ],
       "settings": {
         "csharp.preview.improvedLaunchExperience": false,
@@ -31,5 +34,9 @@
         }
       }
     }
+  },
+  "remoteEnv": {
+    "CLOUDFLARED_TUNNEL_TOKEN": "${localEnv:CLOUDFLARED_TUNNEL_TOKEN}",
+    "TELEGRAM__TOKEN": "${localEnv:TELEGRAM_TOKEN}"
   }
 }

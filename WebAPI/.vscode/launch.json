@@ -8,7 +8,20 @@
       "name": "C#: API Debug",
       "type": "dotnet",
       "request": "launch",
-      "projectPath": "${workspaceFolder}/src/Apps/Api/Api.csproj",
+      "projectPath": "${workspaceFolder}/src/Api/Api.csproj",
+      "serverReadyAction": {
+        "action": "openExternally",
+        "pattern": "\\bNow listening on:\\s+(https?://\\S+)",
+        "uriFormat": "%s/swagger"
+      }
+    },
+    {
+      "name": "C#: API Debug with Cloudflare Tunnel",
+      "type": "dotnet",
+      "request": "launch",
+      "projectPath": "${workspaceFolder}/src/Api/Api.csproj",
+      "preLaunchTask": "Start Cloudflare Tunnel",
+      "postDebugTask": "Stop Cloudflare Tunnel",
       "serverReadyAction": {
         "action": "openExternally",
         "pattern": "\\bNow listening on:\\s+(https?://\\S+)",
