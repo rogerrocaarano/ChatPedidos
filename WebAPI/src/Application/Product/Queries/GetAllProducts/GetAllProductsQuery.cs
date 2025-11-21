@@ -1,4 +1,3 @@
-using Application.Product.Queries.GetAllProducts;
 using LiteBus.Queries.Abstractions;
 
 namespace Application.Product.Queries.GetAllProducts;
