@@ -1,16 +1,19 @@
 using System.Threading.Tasks;
+using Application.Product.Queries.GetProductsListForTelegram;
 using Domain.ValueObjects;
 using FastEndpoints;
+using LiteBus.Queries.Abstractions;
 using TelegramBot.Adapters;
 using TelegramBot.Consts;
 using TelegramBot.DTOs.Types;
 
 namespace Api.Webhooks.TelegramUpdates;
 
-public class TelegramUpdatesEndpoint(TelegramProvider telegramProvider) : Endpoint<Update>
+public class TelegramUpdatesEndpoint(
+    TelegramProvider telegramProvider,
+    IQueryMediator queryMediator
+) : Endpoint<Update>
 {
-    private readonly TelegramProvider _telegramProvider = telegramProvider;
-
     public override void Configure()
     {
         Post("/webhooks/telegram-updates");
@@ -27,7 +30,8 @@ public class TelegramUpdatesEndpoint(TelegramProvider telegramProvider) : Endpoi
             ReplyMarkupCommands.CustomerRequestsLocation => HandleCustomerRequestsLocation(
                 telegramId
             ),
-            _ => _telegramProvider.SendMessageAsync(telegramId, BotMessages.GenericError),
+            ReplyMarkupCommands.CustomerRequestsMenu => HandleCustomerRequestsMenu(telegramId),
+            _ => telegramProvider.SendMessageAsync(telegramId, BotMessages.GenericError),
         };
 
         await commandResult;
@@ -45,7 +49,7 @@ public class TelegramUpdatesEndpoint(TelegramProvider telegramProvider) : Endpoi
             new(ReplyMarkupCommands.CustomerWhantsToTalkToHuman),
         };
 
-        await _telegramProvider.SendMessageWithOptionsAsync(
+        await telegramProvider.SendMessageWithOptionsAsync(
             telegramId,
             BotMessages.Welcome,
             options
@@ -55,6 +59,20 @@ public class TelegramUpdatesEndpoint(TelegramProvider telegramProvider) : Endpoi
     private async Task HandleCustomerRequestsLocation(TelegramId telegramId)
     {
         var str = BotMessages.WorkingHours;
-        await _telegramProvider.SendMessageAsync(telegramId, str);
+        await telegramProvider.SendMessageAsync(telegramId, str);
+    }
+
+    private async Task HandleCustomerRequestsMenu(TelegramId telegramId)
+    {
+        var products = await queryMediator.QueryAsync(new GetProductListForTelegramQuery());
+        // send to telegramId the list of products
+        var message = "Aquí está nuestro menú de productos:\n\n";
+        foreach (var product in products)
+        {
+            message += $"<b>{product.Name}</b>\n";
+            message += $"{product.Description}\n";
+            message += $"<b>Precio: Bs. {product.Price}</b>\n\n";
+        }
+        await telegramProvider.SendMessageAsync(telegramId, message);
     }
 }
